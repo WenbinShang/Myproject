@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class VmService {
@@ -32,5 +33,20 @@ public class VmService {
         String pythonApiUrl = "http://localhost:8000/vms"; // 替换为你的Python API的地址
 
         return restTemplate.postForObject(pythonApiUrl, initVmsList, VmResponse.class);
+    }
+
+    public Map<String, Object> computeOperationalCost() {
+        String pythonApiUrl = "http://localhost:8000/operational_cost"; // 替换为你的Python API的地址
+        return restTemplate.getForObject(pythonApiUrl, Map.class);
+    }
+
+    public Map<String, Object> computeNetworkCost() {
+        String pythonApiUrl = "http://localhost:8000/network_cost"; // 替换为你的Python API的地址
+        return restTemplate.getForObject(pythonApiUrl, Map.class);
+    }
+
+    public Map<String, Object> computeCost() {
+        String pythonApiUrl = "http://localhost:8000/cost"; // 替换为你的Python API的地址
+        return restTemplate.getForObject(pythonApiUrl, Map.class);
     }
 }
